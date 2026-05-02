@@ -595,7 +595,14 @@
     <div class="model-selector">
       <label for="model-select">Model:</label>
       <select id="model-select">
-        <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+        <optgroup label="✨ Gemini 3 Series">
+          <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro Preview</option>
+          <option value="gemini-3-flash-preview">Gemini 3 Flash Preview</option>
+          <option value="gemini-3.1-flash-lite-preview">Gemini 3.1 Flash Lite Preview</option>
+        </optgroup>
+        <optgroup label="Gemini 2.x Series">
+          <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+        </optgroup>
       </select>
     </div>
   </div>
@@ -673,7 +680,7 @@
   const appState = {
     responseHistory: [],
     systemPrompt: 'You are a C-suite communication strategist specializing in reframing challenges as opportunities. Craft concise, authoritative responses that acknowledge objections while shifting perspective toward mutual benefit. Your goal is to maintain leadership presence while turning potential conflicts into collaborative solutions.',
-    selectedModel: 'gemini-2.5-flash',
+    selectedModel: 'gemini-3.1-flash-lite-preview',
     presets: {
       'executive-reframer': {
         name: 'Executive Reframer',
@@ -1298,8 +1305,12 @@
       const model = document.createElement('span');
       // Friendly display names for models
       let modelDisplay = item.model
-        .replace('gemini-1.5-flash', 'Gemini Flash')
-        .replace('gemini-1.5-pro', 'Gemini Pro');
+        .replace('gemini-3.1-pro-preview', 'Gemini 3.1 Pro')
+        .replace('gemini-3-flash-preview', 'Gemini 3 Flash')
+        .replace('gemini-3.1-flash-lite-preview', 'Gemini 3.1 Flash Lite')
+        .replace('gemini-2.5-flash', 'Gemini 2.5 Flash')
+        .replace('gemini-1.5-flash', 'Gemini 1.5 Flash')
+        .replace('gemini-1.5-pro', 'Gemini 1.5 Pro');
 
       model.textContent = modelDisplay;
 
@@ -1383,7 +1394,7 @@
     }
 
     try {
-      const model = appState.selectedModel || 'gemini-1.5-flash';
+      const model = appState.selectedModel || 'gemini-3.1-flash-lite-preview';
       const systemPrompt = appState.systemPrompt;
       const geminiKey = window.getGeminiKey ? window.getGeminiKey() : (localStorage.getItem('gemini_api_key') || '');
 
@@ -1521,7 +1532,7 @@
 
 <footer class="footer">
   <a href="https://josiahjones.com/" target="_blank" rel="noopener">Visit josiahjones.com</a> <span
-    style="opacity:0.5; font-size:0.8em; margin-left:10px;">v2.1</span>
+    style="opacity:0.5; font-size:0.8em; margin-left:10px;">v2.3</span>
 </footer>
 
 <!-- Include utils.js for UIStateManager and other utilities -->
